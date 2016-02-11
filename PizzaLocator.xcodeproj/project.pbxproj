@@ -15,6 +15,7 @@
 		9F6181C61C6C1F63005C42B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6181C41C6C1F63005C42B8 /* LaunchScreen.xib */; };
 		9F6181D21C6C1F63005C42B8 /* PizzaLocatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6181D11C6C1F63005C42B8 /* PizzaLocatorTests.swift */; };
 		9F7B6D591C6D31C100E60132 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7B6D581C6D31C000E60132 /* MapKit.framework */; };
+		9F7B6D5B1C6D406900E60132 /* PizzaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6D5A1C6D406900E60132 /* PizzaAPI.swift */; };
 		9FBE89681C6C26C80047BD4D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9FBE89671C6C26C80047BD4D /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		9F6181D01C6C1F63005C42B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F6181D11C6C1F63005C42B8 /* PizzaLocatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaLocatorTests.swift; sourceTree = "<group>"; };
 		9F7B6D581C6D31C000E60132 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9F7B6D5A1C6D406900E60132 /* PizzaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PizzaAPI.swift; sourceTree = "<group>"; };
 		9FBE89671C6C26C80047BD4D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C653A39A9039281B7D808A40 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				9F6181C21C6C1F63005C42B8 /* Images.xcassets */,
 				9F6181C41C6C1F63005C42B8 /* LaunchScreen.xib */,
 				9F6181B91C6C1F63005C42B8 /* Supporting Files */,
+				9F7B6D5A1C6D406900E60132 /* PizzaAPI.swift */,
 			);
 			path = PizzaLocator;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F7B6D5B1C6D406900E60132 /* PizzaAPI.swift in Sources */,
 				9F6181BE1C6C1F63005C42B8 /* ViewController.swift in Sources */,
 				9F6181BC1C6C1F63005C42B8 /* AppDelegate.swift in Sources */,
 			);
