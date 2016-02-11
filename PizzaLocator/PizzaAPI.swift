@@ -29,6 +29,76 @@ class PizzaAPI {
         
         self.session = Session.sharedSession()
     }
+    
+    func getPizzaWithLocation(location: CLLocation) {
+        if let session = self.session
+        {
+            var parameters = location.parameters()
+            parameters += [Parameter.categoryId:"4bf58dd8d48988d1ca941735"]
+            parameters += [Parameter.radius: "2000"]
+            parameters += [Parameter.limit: "50"]
+            
+            let searchTask = session.venues.search(parameters) { (result) -> Void in
+                
+                if let response = result.response
+                {
+                    if let venues = response["venues"] as? [[String: AnyObject]] {
+                        autoreleasepool
+                        {
+                            let realm = try! Realm()
+                            realm.beginWrite()
+                            
+                            for venue:[String:AnyObject] in venues {
+                                let venueObject:Venue = Venue()
+                                
+                                if let id = venue["id"] as? String
+                                {
+                                    venueObject.id = id
+                                }
+                                
+                                if let id = venue["name"] as? String
+                                {
+                                    venueObject.name = name
+                                }
+                                if let id = venue["location"] as? String
+                                {
+                                    if let longitude = location["lng"] as? Float
+                                    {
+                                        venueObject.longitude = longitude
+                                    }
+                                    
+                                    if let latitude = location["lat"] as? Float
+                                    {
+                                        venueObject.latitude = latitude
+                                    }
+                                    
+                                    if let formatteAddress = location["formatteAddress"] as? Float
+                                    {
+                                        venueObject.address = formatteAddress.joinWithSeparator(" ")
+                                    }
+                                }
+                                
+                                realm.add(venueObject, update: true)
+                            }
+                            
+                            do{
+                                try realm.commitWrite()
+                                print("Storing Venues")
+                            }
+                            catch (let e){
+                                print("Realm not working: \(e)")
+                            }
+                        }
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(API.notifications.venuesUpdated, object: nil, userInfo: nil)
+                    }
+                    
+                }
+                
+            }
+            searchTask.start()
+        }
+    }
 }
 
 extension CLLocation
