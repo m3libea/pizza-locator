@@ -7,7 +7,7 @@ PODS:
     - Realm (= 0.98.1)
 
 DEPENDENCIES:
-  - QuadratTouch (= 1.1.1)
+  - QuadratTouch (>= 1.0)
   - RealmSwift
 
 SPEC CHECKSUMS:

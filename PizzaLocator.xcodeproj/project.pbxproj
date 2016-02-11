@@ -14,6 +14,7 @@
 		9F6181C31C6C1F63005C42B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6181C21C6C1F63005C42B8 /* Images.xcassets */; };
 		9F6181C61C6C1F63005C42B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6181C41C6C1F63005C42B8 /* LaunchScreen.xib */; };
 		9F6181D21C6C1F63005C42B8 /* PizzaLocatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6181D11C6C1F63005C42B8 /* PizzaLocatorTests.swift */; };
+		9F7B6D591C6D31C100E60132 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7B6D581C6D31C000E60132 /* MapKit.framework */; };
 		9FBE89681C6C26C80047BD4D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9FBE89671C6C26C80047BD4D /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		9F6181CB1C6C1F63005C42B8 /* PizzaLocatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PizzaLocatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6181D01C6C1F63005C42B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F6181D11C6C1F63005C42B8 /* PizzaLocatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaLocatorTests.swift; sourceTree = "<group>"; };
+		9F7B6D581C6D31C000E60132 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9FBE89671C6C26C80047BD4D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C653A39A9039281B7D808A40 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F7B6D591C6D31C100E60132 /* MapKit.framework in Frameworks */,
 				1F9773F4AC1BF853E7D83ABD /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +78,7 @@
 		126BAC24DDBECECC951883BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F7B6D581C6D31C000E60132 /* MapKit.framework */,
 				599EAA291430FF6E835407AA /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -186,7 +190,8 @@
 		9F6181AE1C6C1F63005C42B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					9F6181B51C6C1F63005C42B8 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -354,6 +359,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -420,7 +426,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PizzaLocator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m3libea.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -431,7 +439,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PizzaLocator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m3libea.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -450,6 +460,7 @@
 				);
 				INFOPLIST_FILE = PizzaLocatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m3libea.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PizzaLocator.app/PizzaLocator";
 			};
@@ -465,6 +476,7 @@
 				);
 				INFOPLIST_FILE = PizzaLocatorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m3libea.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PizzaLocator.app/PizzaLocator";
 			};
