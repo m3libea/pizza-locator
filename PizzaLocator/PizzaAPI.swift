@@ -22,6 +22,8 @@ class PizzaAPI {
     
     init()
     {
+        
+        //Initialize FourSquare client
         let client = Client(clientID: "3XPR2CTGDIEXQ3UGG1GDG0QYTCBOHF2CO2FB41VOGYG5P14K", clientSecret: "B5FV13FT5RG0JHT00JZQWEQS5FTGLDPPDOCQB2D3YVAICDPP", redirectURL: "")
         
         let configuration = Configuration(client:client)
@@ -50,17 +52,16 @@ class PizzaAPI {
                             
                             for venue:[String:AnyObject] in venues {
                                 let venueObject:Venue = Venue()
-                                
                                 if let id = venue["id"] as? String
                                 {
                                     venueObject.id = id
                                 }
                                 
-                                if let id = venue["name"] as? String
+                                if let name = venue["name"] as? String
                                 {
                                     venueObject.name = name
                                 }
-                                if let id = venue["location"] as? String
+                                if let location = venue["location"] as? [String: AnyObject]
                                 {
                                     if let longitude = location["lng"] as? Float
                                     {
@@ -72,12 +73,12 @@ class PizzaAPI {
                                         venueObject.latitude = latitude
                                     }
                                     
-                                    if let formatteAddress = location["formatteAddress"] as? Float
+                                    if let formatteAddress = location["formatteAddress"] as? [String]
                                     {
                                         venueObject.address = formatteAddress.joinWithSeparator(" ")
                                     }
                                 }
-                                
+                                                                
                                 realm.add(venueObject, update: true)
                             }
                             

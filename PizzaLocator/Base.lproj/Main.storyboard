@@ -39,6 +39,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="1ne-Zi-AyO" id="B7k-En-5RJ"/>
+                        <outlet property="tableView" destination="Dyk-M6-GdY" id="7ZR-fk-As3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
