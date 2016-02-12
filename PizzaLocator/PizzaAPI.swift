@@ -73,7 +73,7 @@ class PizzaAPI {
                                         venueObject.latitude = latitude
                                     }
                                     
-                                    if let formatteAddress = location["formatteAddress"] as? [String]
+                                    if let formatteAddress = location["formattedAddress"] as? [String]
                                     {
                                         venueObject.address = formatteAddress.joinWithSeparator(" ")
                                     }

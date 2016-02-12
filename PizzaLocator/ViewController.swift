@@ -15,15 +15,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet var mapView:MKMapView?
     @IBOutlet var tableView:UITableView?
     var locationManager:CLLocationManager?
-    let distanceSpan:Double = 500
+    let distanceSpan:Double = 1000
     var lastlocation:CLLocation?
     var venues:[Venue]?
-
     
     //Controller Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("onVenuesUpdated:"), name: API.notifications.venuesUpdated, object: nil)
     }
 
@@ -52,7 +50,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             locationManager!.requestAlwaysAuthorization()
-            locationManager!.distanceFilter = 50
+            locationManager!.distanceFilter = 100
             locationManager!.startUpdatingLocation()
         }
     }
@@ -85,15 +83,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             venues = realm.objects(Venue).filter(predicate).sort{
                 location.distanceFromLocation($0.coordinate) < location.distanceFromLocation($1.coordinate)
             }
-            print(venues!.count)
-
             
             for venue in venues! {
                 let annotation = PizzaAnnotation(title: venue.name, subtitle: venue.address, coordinate: CLLocationCoordinate2D(latitude: Double(venue.latitude), longitude: Double(venue.longitude)))
                 mapView?.addAnnotation(annotation)
             }
             tableView?.reloadData()
-            print(venues!.count)
         }
     }
     
@@ -117,18 +112,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         refreshVenues(nil)
     }
     
-    func calculateCoordinatesWithRegion(location: CLLocation) -> (CLLocationCoordinate2D, CLLocationCoordinate2D){
-        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, distanceSpan, distanceSpan)
+    func calculateCoordinatesWithRegion(location:CLLocation) -> (CLLocationCoordinate2D, CLLocationCoordinate2D) {
+        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, distanceSpan, distanceSpan);
         
-        var start:CLLocationCoordinate2D = CLLocationCoordinate2D()
-        var stop:CLLocationCoordinate2D = CLLocationCoordinate2D()
+        var start:CLLocationCoordinate2D = CLLocationCoordinate2D();
+        var stop:CLLocationCoordinate2D = CLLocationCoordinate2D();
         
-        start.latitude = region.center.latitude + (region.span.latitudeDelta / 2.0)
-        start.longitude = region.center.longitude + (region.span.longitudeDelta / 2.0)
-        stop.latitude = region.center.latitude + (region.span.latitudeDelta / 2.0)
-        stop.longitude = region.center.longitude + (region.span.longitudeDelta / 2.0)
+        start.latitude  = region.center.latitude  + (region.span.latitudeDelta  / 2.0);
+        start.longitude = region.center.longitude - (region.span.longitudeDelta / 2.0);
+        stop.latitude   = region.center.latitude  - (region.span.latitudeDelta  / 2.0);
+        stop.longitude  = region.center.longitude + (region.span.longitudeDelta / 2.0);
         
-        return(start,stop)
+        return (start, stop);
     }
     
 //Table View Methods
@@ -142,10 +137,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cellIdentifier")
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         }
         
         if let venue = venues?[indexPath.row] {
@@ -158,8 +153,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         if let venue = venues?[indexPath.row]{
-            let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: Double(venue.latitude), longitude: Double(venue.longitude)), distanceSpan, distanceSpan)
-            mapView?.setRegion(region, animated: true)
+            mapView?.setCenterCoordinate(CLLocationCoordinate2D(latitude: Double(venue.latitude), longitude: Double(venue.longitude)), animated: true)
         }
     }
     
