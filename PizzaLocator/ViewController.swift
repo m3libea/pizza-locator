@@ -137,11 +137,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell")
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         
         if let venue = venues?[indexPath.row] {
             cell!.textLabel?.text = venue.name
